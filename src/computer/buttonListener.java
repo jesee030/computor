@@ -53,14 +53,15 @@ public class buttonListener implements ActionListener {
 
                 computer.ans = computer.opNum1 - computer.opNum2;
                 computer.ansText.setText("" + computer.ans);
-            } else if (s.equals("全部清零")) {
-                computer.num1Text.setText("0");
-                computer.ansText.setText("0");
-                computer.num2Text.setText("0");
             }
 
         }else {
             computer.ansText.setText("错误输入" );
+        }
+        if (s.equals("全部清零")) {
+            computer.num1Text.setText("0");
+            computer.ansText.setText("0");
+            computer.num2Text.setText("0");
         }
     }
     boolean isLegal(){
@@ -76,13 +77,13 @@ public class buttonListener implements ActionListener {
 
         int count = 0;
         int dotCount = 0;
-        if (strArr[0]=='.'||strArr[strArr.length]=='.'){
+        if (str.startsWith(".")||str.endsWith(".")){
             //小数点的位置在数据的开头或结 尾处
             return false;
         }
         for(int i = 0; i < strArr.length; i++) {
-
-            if(Character.isDigit(strArr[i]) == false && !(strArr[i]=='.') ){
+            //char is not num or '.'
+            if(!Character.isDigit(strArr[i])  && !('.'==(strArr[i]) )){
                 count++;
             }
             if (strArr[i]=='.'){
